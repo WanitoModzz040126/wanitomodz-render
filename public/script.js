@@ -1,6 +1,6 @@
 (function() {
   let config = null;
-  let configPromise = null;
+  let configLoaded = false;
 
   const gate = document.getElementById('sound-gate');
   const audio = document.getElementById('audio');
@@ -10,17 +10,14 @@
   const icoPlay = document.getElementById('ico-play');
 
   async function loadConfig() {
-    if (configPromise) return configPromise;
-    configPromise = (async () => {
-      try {
-        const res = await fetch('/api/config');
-        config = await res.json();
-        applyConfig();
-      } catch (err) {
-        console.warn('Failed to load config from backend');
-      }
-    })();
-    return configPromise;
+    try {
+      const res = await fetch('/api/config');
+      config = await res.json();
+      configLoaded = true;
+      applyConfig();
+    } catch (err) {
+      console.warn('Failed to load config from backend');
+    }
   }
 
   function applyConfig() {
@@ -62,13 +59,13 @@
     const largeTelegram = document.getElementById('large-telegram-btn');
     if (largeTelegram) largeTelegram.href = config.telegram;
 
-    // Audio
+    // Audio source
     if (config.audioUrl && !audio.src) {
       audio.src = config.audioUrl;
       audio.load();
     }
 
-    // Videos
+    // Video sources
     const shizukuVideo = document.getElementById('shizuku-video');
     if (shizukuVideo && config.tutorialShizukuUrl && !shizukuVideo.src) {
       shizukuVideo.src = config.tutorialShizukuUrl;
@@ -88,12 +85,15 @@
   }
 
   async function playAudio() {
-    if (!audio.src) return;
+    if (!audio.src) {
+      // Wait for config to set audio src
+      if (!configLoaded) await loadConfig();
+      if (!audio.src) return;
+    }
     audio.volume = 0.45;
     try {
       await audio.play();
     } catch (err) {
-      // If not ready, wait for canplaythrough
       audio.addEventListener('canplaythrough', async function onCanPlay() {
         try {
           await audio.play();
@@ -105,10 +105,6 @@
 
   async function startAudio(e) {
     e.stopPropagation();
-    // Ensure config is loaded before playing
-    if (!config) {
-      await loadConfig();
-    }
     await playAudio();
     gate.classList.add('hide');
     setTimeout(() => { gate.style.display = 'none'; }, 550);
@@ -267,6 +263,5 @@
     }
   });
 
-  // Start loading config in background
   loadConfig();
 })();
