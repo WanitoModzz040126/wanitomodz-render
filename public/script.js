@@ -1,5 +1,6 @@
 (function() {
   let config = null;
+  let configPromise = null;
 
   const gate = document.getElementById('sound-gate');
   const audio = document.getElementById('audio');
@@ -9,13 +10,17 @@
   const icoPlay = document.getElementById('ico-play');
 
   async function loadConfig() {
-    try {
-      const res = await fetch('/api/config');
-      config = await res.json();
-      applyConfig();
-    } catch (err) {
-      console.warn('Failed to load config from backend');
-    }
+    if (configPromise) return configPromise;
+    configPromise = (async () => {
+      try {
+        const res = await fetch('/api/config');
+        config = await res.json();
+        applyConfig();
+      } catch (err) {
+        console.warn('Failed to load config from backend');
+      }
+    })();
+    return configPromise;
   }
 
   function applyConfig() {
@@ -33,7 +38,7 @@
       }
     });
 
-    // Social links (hero section)
+    // Social links
     const heroTelegram = document.getElementById('hero-telegram');
     if (heroTelegram) heroTelegram.href = config.telegram;
     const heroTelegramChannel = document.getElementById('hero-telegram-channel');
@@ -41,7 +46,6 @@
     const heroYoutube = document.getElementById('hero-youtube');
     if (heroYoutube) heroYoutube.href = config.youtube;
 
-    // Contact section links
     const contactFacebook = document.getElementById('contact-facebook');
     if (contactFacebook) contactFacebook.href = config.facebook;
     const contactTelegram = document.getElementById('contact-telegram');
@@ -53,48 +57,59 @@
     const contactInstagram = document.getElementById('contact-instagram');
     if (contactInstagram) contactInstagram.href = config.instagram;
 
-    // VIP and large Telegram buttons
     const vipTelegram = document.getElementById('vip-telegram-link');
     if (vipTelegram) vipTelegram.href = config.telegram;
     const largeTelegram = document.getElementById('large-telegram-btn');
     if (largeTelegram) largeTelegram.href = config.telegram;
 
-    // Audio source
+    // Audio
     if (config.audioUrl && !audio.src) {
       audio.src = config.audioUrl;
       audio.load();
     }
 
-    // Video sources
+    // Videos
     const shizukuVideo = document.getElementById('shizuku-video');
     if (shizukuVideo && config.tutorialShizukuUrl && !shizukuVideo.src) {
       shizukuVideo.src = config.tutorialShizukuUrl;
       shizukuVideo.load();
+      shizukuVideo.addEventListener('error', () => {
+        console.warn('Failed to load Shizuku tutorial video. Check URL.');
+      });
     }
     const patchVideo = document.getElementById('patch-video');
     if (patchVideo && config.tutorialPatchUrl && !patchVideo.src) {
       patchVideo.src = config.tutorialPatchUrl;
       patchVideo.load();
-    }
-  }
-
-  function playAudio() {
-    if (!audio.src) return;
-    audio.volume = 0.45;
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        audio.addEventListener('canplaythrough', function onCanPlay() {
-          audio.play().catch(() => {});
-          audio.removeEventListener('canplaythrough', onCanPlay);
-        });
+      patchVideo.addEventListener('error', () => {
+        console.warn('Failed to load Patching tutorial video. Check URL.');
       });
     }
   }
 
-  function startAudio(e) {
+  async function playAudio() {
+    if (!audio.src) return;
+    audio.volume = 0.45;
+    try {
+      await audio.play();
+    } catch (err) {
+      // If not ready, wait for canplaythrough
+      audio.addEventListener('canplaythrough', async function onCanPlay() {
+        try {
+          await audio.play();
+        } catch (e) {}
+        audio.removeEventListener('canplaythrough', onCanPlay);
+      });
+    }
+  }
+
+  async function startAudio(e) {
     e.stopPropagation();
-    playAudio();
+    // Ensure config is loaded before playing
+    if (!config) {
+      await loadConfig();
+    }
+    await playAudio();
     gate.classList.add('hide');
     setTimeout(() => { gate.style.display = 'none'; }, 550);
     player.classList.remove('hidden');
@@ -252,5 +267,6 @@
     }
   });
 
+  // Start loading config in background
   loadConfig();
 })();
