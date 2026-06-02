@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Referrer-Policy" content="no-referrer" />
+  <title>WanitoModz Tool — MLBB Skin & Config Patcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <div id="sound-gate" role="button" aria-label="Click to enable audio">
+    <div class="gate-box">
+      <span class="gate-logo">WANITOMODZZ<em>TOOL</em></span>
+      <p class="gate-line">Tap anywhere to enter</p>
+      <span class="gate-pulse"></span>
+    </div>
+  </div>
+
+  <div id="player" class="player hidden">
+    <button id="pl-btn" aria-label="Play or pause">
+      <svg id="ico-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <svg id="ico-play"  viewBox="0 0 24 24" fill="currentColor" class="hidden"><polygon points="5,3 19,12 5,21"/></svg>
+    </button>
+    <div class="pl-meta">
+      <span class="pl-title">WanitoModz Background Music</span>
+      <span class="pl-sub">Now playing</span>
+    </div>
+    <audio id="audio" loop></audio>
+  </div>
+
+  <header id="nav">
+    <nav class="nav-inner">
+      <a href="#hero" class="nav-brand">WANITO<span>MODZZ</span></a>
+      <button class="nav-burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tutorials">Tutorials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" id="nav-download-link" class="nav-dl">Download APK</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="disclaimer-banner">
+    <span>⚠️</span> WanitoModz Tool is for educational purposes only. Not affiliated with Moonton. Use at your own risk. <span>⚠️</span>
+  </div>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1 class="main-title">WanitoModz <span>Tool</span></h1>
+      <p class="hero-tagline">MLBB Skin & Config Patcher — Free Skins, Drone View,<br class="d-none-sm" /> Map Hack, FPS Boost & More.</p>
+      <div class="hero-buttons">
+        <a href="#" id="hero-download-link" class="btn-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download APK — Free
+        </a>
+        <a href="#vip" class="btn-vip">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          Unlock VIP · $4.99 Lifetime
+        </a>
+      </div>
+      <div class="hero-links">
+        <a href="#" target="_blank" rel="noopener" id="hero-telegram">Join Telegram</a>
+        <a href="#" target="_blank" rel="noopener" id="hero-telegram-channel">Telegram Channel</a>
+        <a href="#" target="_blank" rel="noopener" id="hero-youtube">YouTube</a>
+        <a href="#contact">Send a message</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <div class="sec-label">02 — Features</div>
+      <h2 class="sec-title">What's inside WanitoModz Tool</h2>
+      <p class="sec-sub">No root required. Works on Android 9–16 using Shizuku only.</p>
+
+      <div class="feat-split">
+        <!-- FREE COLUMN -->
+        <div class="feat-col">
+          <div class="feat-col-head free-head">
+            <span class="tier-tag">FREE</span>
+            <h3>Free Features</h3>
+          </div>
+          <div class="feat-group">
+            <div class="feat-group-title">Config Patcher</div>
+            <ul class="feat-list">
+              <li><span class="feat-icon">◈</span><div><strong>Drone View Patches</strong><p>1X, 2X, 3X, and 4X overhead drone camera presets.</p></div></li>
+              <li><span class="feat-icon">◈</span><div><strong>Custom Drone Range</strong><p>Set camera height from 1 to 100.</p></div></li>
+              <li><span class="feat-icon">◈</span><div><strong>3D View Presets — V1, V2, V3</strong><p>Standard, cinematic, ultra-wide angles.</p></div></li>
+            </ul>
+          </div>
+          <div class="feat-group">
+            <div class="feat-group-title">Skin Unlocker — SKiFT & EFT Engine</div>
+            <div class="role-grid">
+              <div class="role-card"><span class="role-ico assassin">⊕</span><strong>Assassin</strong><span>High Burst</span></div>
+              <div class="role-card"><span class="role-ico fighter">⊕</span><strong>Fighter</strong><span>Durability</span></div>
+              <div class="role-card"><span class="role-ico mage">⊕</span><strong>Mage</strong><span>Magic Burst</span></div>
+              <div class="role-card"><span class="role-ico marksman">⊕</span><strong>Marksman</strong><span>Long Range</span></div>
+              <div class="role-card"><span class="role-ico tank">⊕</span><strong>Tank</strong><span>CC & Defense</span></div>
+              <div class="role-card"><span class="role-ico support">⊕</span><strong>Support</strong><span>Utility</span></div>
+            </div>
+          </div>
+          <div class="feat-group">
+            <div class="feat-group-title">Battle Effects Mod</div>
+            <ul class="feat-list compact">
+              <li><span class="feat-icon">✦</span><div><strong>Recall Effects</strong><p>Epic return animation.</p></div></li>
+              <li><span class="feat-icon">✦</span><div><strong>Elimination Effects</strong><p>Custom kill effect.</p></div></li>
+              <li><span class="feat-icon">✦</span><div><strong>Battle Emotes</strong><p>Exclusive stickers.</p></div></li>
+              <li><span class="feat-icon">✦</span><div><strong>Respawn Effects</strong><p>New look on respawn.</p></div></li>
+              <li><span class="feat-icon">✦</span><div><strong>Notification Effects</strong><p>Custom kill streak visuals.</p></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- VIP COLUMN -->
+        <div class="feat-col" id="vip">
+          <div class="feat-col-head vip-head">
+            <span class="tier-tag vip-tag">♛ VIP</span>
+            <h3>VIP Features</h3>
+          </div>
+          <div class="vip-price-card">
+            <div class="vipp-left">
+              <span class="vipp-price">$4.99</span>
+              <span class="vipp-note">one-time · lifetime access</span>
+            </div>
+            <a href="#contact" class="vipp-btn">Get VIP</a>
+          </div>
+
+          <div class="feat-group">
+            <div class="feat-group-title">System Tweaks Optimizer</div>
+            <ul class="feat-list compact vip-list">
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Maximize FPS</strong><p>Unlock maximum frames.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Core Overclock</strong><p>Force peak CPU/GPU performance.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Zero Lag UI</strong><p>Optimize touch latency.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Network Stabilizer</strong><p>Reduce ping spikes.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>RAM Booster</strong><p>Clear cache before launching.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Thermal Bypass</strong><p>Prevent FPS drops from heat.</p></div></li>
+              <li><span class="feat-icon vip-ico">⬡</span><div><strong>Backup / Restore</strong><p>Save and revert patches.</p></div></li>
+            </ul>
+          </div>
+
+          <ul class="feat-list vip-list">
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Expand Map Vision <em class="mh-tag">Map Hack</em></strong><p>Reveals enemy positions in real time.</p><div class="warn-tag">⚠ Do not use in Ranked — risk of ban</div></div></li>
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Enemy Lag</strong><p>Induce network delay on enemies.</p><div class="warn-tag">⚠ VIP exclusive</div></div></li>
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Retri Buff Damage</strong><p>Amplify retribution burn damage.</p></div></li>
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Hero Buff Damage</strong><p>Amplify physical/magical damage.</p></div></li>
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Zero Ads</strong><p>Ad-free experience.</p></div></li>
+            <li><span class="feat-icon vip-ico">◉</span><div><strong>Priority Updates</strong><p>Get new skins and patches first.</p></div></li>
+          </ul>
+
+          <div class="vip-note-card">
+            <p>VIP is a one-time purchase. Contact <strong>@wanitomodzz</strong> on Telegram.</p>
+            <a href="#" target="_blank" rel="noopener" class="tg-btn" id="vip-telegram-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM8.12 12.65l-2.7-1.06c-.58-.23-.58-.55.12-.78l8.17-3.12c.58-.23.95.1.72.7l-1.5 4.8c-.16.5-.4.6-.78.35l-2.18-1.6-1.05 1.02c-.12.12-.23.12-.38 0l.06-2.3 3.4-3.07c.17-.16.05-.25-.13-.14l-4.5 2.84z"/></svg>
+              Message on Telegram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tutorials">
+    <div class="container">
+      <div class="sec-label">03 — Tutorials</div>
+      <h2 class="sec-title">Video tutorials</h2>
+      <p class="sec-sub">Watch the guides below.</p>
+      <div class="tutorials-grid">
+        <div class="tut-card">
+          <div class="tut-num">01</div>
+          <h3>Setting up Shizuku</h3>
+          <div class="video-box">
+            <video id="shizuku-video" controls preload="none" loading="lazy" playsinline></video>
+          </div>
+          <ol class="tut-steps">
+            <li>Install <strong>Shizuku</strong> from Google Play or GitHub Releases.</li>
+            <li>Enable <strong>Developer Options</strong> (tap Build Number 7 times).</li>
+            <li>Enable <strong>Wireless Debugging</strong> in Developer Options.</li>
+            <li>Open Shizuku → tap <strong>"Pairing with Wireless ADB"</strong>.</li>
+            <li>Start Shizuku service — status should turn <em>green</em>.</li>
+            <li>Open WanitoModz Tool → Dashboard will show <strong>Shizuku: ACTIVE</strong>.</li>
+          </ol>
+        </div>
+        <div class="tut-card">
+          <div class="tut-num">02</div>
+          <h3>Patching Skins & Config</h3>
+          <div class="video-box">
+            <video id="patch-video" controls preload="none" loading="lazy" playsinline></video>
+          </div>
+          <ol class="tut-steps">
+            <li><strong>Close MLBB</strong> completely before patching.</li>
+            <li>Go to <strong>Config tab</strong> and select a Drone View preset.</li>
+            <li>Go to <strong>Skin tab</strong>, select hero category and skin.</li>
+            <li>Wait for <em>Patch Success</em> notification.</li>
+            <li>Launch MLBB normally — patches take effect.</li>
+            <li>Use <strong>Backup / Restore</strong> if a game update resets patches.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="sec-label">04 — FAQ</div>
+      <h2 class="sec-title">Frequently asked</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><h4>Which Android versions are supported?</h4><p>Android 9 through 16. Works with Shizuku only. No root required.</p></div>
+        <div class="faq-item"><h4>Do I need to root my device?</h4><p>No, WanitoModz Tool uses Shizuku (ADB access). No root needed.</p></div>
+        <div class="faq-item"><h4>What is Shizuku and why do I need it?</h4><p>Shizuku allows the app to apply patches without root. It's safe and easy to set up.</p></div>
+        <div class="faq-item"><h4>Will this get my account banned?</h4><p>Free features like drone view carry low risk. VIP combat features (map hack, enemy lag) are higher risk — avoid using them in Ranked mode.</p></div>
+        <div class="faq-item"><h4>How do I remove patches?</h4><p>Use <strong>Backup / Restore</strong> inside the app's Config tab to revert all files instantly.</p></div>
+        <div class="faq-item"><h4>Does it work after MLBB updates?</h4><p>Config files may reset after game updates. Simply re-apply patches through WanitoModz Tool.</p></div>
+        <div class="faq-item"><h4>How do I get VIP access?</h4><p>Message <strong>@wanitomodzz</strong> on Telegram or Facebook. One-time payment of $4.99 for lifetime access.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="sec-label">05 — Contact</div>
+      <h2 class="sec-title">Get in touch</h2>
+      <div class="contact-layout">
+        <div class="contact-left">
+          <div class="about-block">
+            <p><strong>WanitoModz Tool</strong> is a free MLBB skin injector and config patcher. It is not affiliated with Moonton or Mobile Legends: Bang Bang. Use at your own risk — the developer is not responsible for any account actions taken by Moonton.</p>
+          </div>
+          <div class="dev-block">
+            <span class="dev-label">Developer</span>
+            <span class="dev-handle">@wanitomodzz</span>
+          </div>
+          <div class="social-row">
+            <a href="#" class="soc-link" target="_blank" id="contact-facebook">Facebook</a>
+            <a href="#" target="_blank" class="soc-link tg-soc" id="contact-telegram">Telegram</a>
+            <a href="#" target="_blank" class="soc-link tg-soc" id="contact-telegram-channel">Telegram Channel</a>
+            <a href="#" target="_blank" class="soc-link yt-soc" id="contact-youtube">YouTube</a>
+            <a href="#" class="soc-link ig-soc" target="_blank" id="contact-instagram">Instagram</a>
+          </div>
+          <div class="policy-note">
+            <strong>Usage Policy:</strong> This tool is for educational and personal exploration of MLBB config structures only. Do not bypass official security measures. The developer assumes no liability for account bans or any other consequences.
+          </div>
+          <div class="telegram-large-btn">
+            <a href="#" target="_blank" class="btn-telegram-large" id="large-telegram-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM8.12 12.65l-2.7-1.06c-.58-.23-.58-.55.12-.78l8.17-3.12c.58-.23.95.1.72.7l-1.5 4.8c-.16.5-.4.6-.78.35l-2.18-1.6-1.05 1.02c-.12.12-.23.12-.38 0l.06-2.3 3.4-3.07c.17-.16.05-.25-.13-.14l-4.5 2.84z"/></svg>
+              Message on Telegram
+            </a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="contact-info-card">
+            <p>For inquiries, support, or VIP purchase, reach out directly on Telegram or Facebook.</p>
+            <p>We reply within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">WANITO<span>MODZZ</span> <small>Tool v1.0.0</small></div>
+      <p class="footer-copy">© 2026 WanitoModz Tool by @wanitomodzz</p>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#tutorials">Tutorials</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
