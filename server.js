@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const config = {
-  downloadUrl: 'https://github.com/WanitoModz040126/MLBB-SKIN-PATCHER/releases/download/untagged-d985482180c39244607b/WanitoModz.Patcher.apk',
+  downloadUrl: 'https://github.com/WanitoModzz040126/WanitoModz_Patcher/releases/download/V23/WanitoModz.Tools.apk',
   telegram: 'https://t.me/wanitomodzz',
   telegramChannel: 'https://t.me/wanitomodzz_channel',
   youtube: 'https://youtube.com/@wanitomodzz',
